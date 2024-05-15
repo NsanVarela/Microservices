@@ -1,4 +1,4 @@
-package com.ecommerce.microcommerce.configuration;
+package com.ecommerce.micrommerce.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.ecommerce.micrommerce.web"))
+                .apis(RequestHandlerSelectors.basePackage("com.ecommerce.micrommerce.web.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
