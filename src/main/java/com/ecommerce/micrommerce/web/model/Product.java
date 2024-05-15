@@ -1,4 +1,4 @@
-package com.ecommerce.microcommerce.web.model;
+package com.ecommerce.micrommerce.web.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

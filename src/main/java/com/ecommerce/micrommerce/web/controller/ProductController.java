@@ -1,4 +1,4 @@
-package com.ecommerce.microcommerce.web.controller;
+package com.ecommerce.micrommerce.web.controller;
 
 
 
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.ecommerce.microcommerce.web.dao.ProductDao;
-import com.ecommerce.microcommerce.web.exceptions.ProduitIntrouvableException;
-import com.ecommerce.microcommerce.web.model.Product;
+import com.ecommerce.micrommerce.web.dao.ProductDao;
+import com.ecommerce.micrommerce.web.exceptions.ProduitIntrouvableException;
+import com.ecommerce.micrommerce.web.model.Product;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -72,4 +72,14 @@ public class ProductController {
                 .toUri();
         return ResponseEntity.created(location).build();
     }
+    
+    @ApiOperation(value = "Calcule la marge de chaque produit (différence entre prix d‘achat et prix de vente)!")
+    @GetMapping(value = "/AdminProduits/{id}")
+    public String calculerMargeProduit(@PathVariable int id) {
+    	Product produit = productDao.findById(id);
+    	if(produit==null) throw new ProduitIntrouvableException("Le produit avec l'id " + id + " est INTROUVABLE. Écran Bleu si je pouvais.");
+    	int margeProduit = produit.getPrix() - produit.getPrixAchat();
+    	return produit.toString() + ": " + margeProduit;
+    }
+    
 }
