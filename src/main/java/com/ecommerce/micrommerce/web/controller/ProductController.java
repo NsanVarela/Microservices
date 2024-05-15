@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -80,6 +81,13 @@ public class ProductController {
     	if(produit==null) throw new ProduitIntrouvableException("Le produit avec l'id " + id + " est INTROUVABLE. Écran Bleu si je pouvais.");
     	int margeProduit = produit.getPrix() - produit.getPrixAchat();
     	return produit.toString() + ": " + margeProduit;
+    }
+    
+    @ApiOperation(value = "Retourne la liste de tous les produits triés par nom croissant")
+    @GetMapping(value = "/Produits/tries")
+    public List<Product> trierProduitsParOrdreAlphabetique() {
+    	Sort sortBy = Sort.by(new Sort.Order(Sort.Direction.ASC, "nom").ignoreCase());
+    	return productDao.findAll(sortBy);
     }
     
 }
