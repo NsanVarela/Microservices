@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ecommerce.micrommerce.web.dao.ProductDao;
+import com.ecommerce.micrommerce.web.exceptions.ProduitGratuitException;
 import com.ecommerce.micrommerce.web.exceptions.ProduitIntrouvableException;
 import com.ecommerce.micrommerce.web.model.Product;
 
@@ -55,6 +56,7 @@ public class ProductController {
     public Product afficherUnProduit(@PathVariable int id) {
         Product produit = productDao.findById(id);
         if(produit==null) throw new ProduitIntrouvableException("Le produit avec l'id " + id + " est INTROUVABLE. Écran Bleu si je pouvais.");
+        if (produit.getPrix() == 0) throw new ProduitGratuitException("Le produit avec l'id " + id + " est GRATUIT.");
         return produit;
     }
 
