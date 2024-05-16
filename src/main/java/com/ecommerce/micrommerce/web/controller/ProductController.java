@@ -56,7 +56,7 @@ public class ProductController {
     public Product afficherUnProduit(@PathVariable int id) {
         Product produit = productDao.findById(id);
         if(produit==null) throw new ProduitIntrouvableException("Le produit avec l'id " + id + " est INTROUVABLE. Écran Bleu si je pouvais.");
-        if (produit.getPrix() == 0) throw new ProduitGratuitException("Le produit avec l'id " + id + " est GRATUIT.");
+//        if (produit.getPrix() == 0) throw new ProduitGratuitException("Le produit avec l'id " + id + " est GRATUIT.");
         return produit;
     }
 
@@ -86,7 +86,7 @@ public class ProductController {
     }
     
     @ApiOperation(value = "Retourne la liste de tous les produits triés par nom croissant")
-    @GetMapping(value = "/Produits/tries")
+    @GetMapping(value = "/Produits/sort")
     public List<Product> trierProduitsParOrdreAlphabetique() {
     	Sort sortBy = Sort.by(new Sort.Order(Sort.Direction.ASC, "nom").ignoreCase());
     	return productDao.findAll(sortBy);
