@@ -1,4 +1,4 @@
-package com.ecommerce.microcommerce.web.controller;
+package com.ecommerce.micrommerce.web.controller;
 
 
 
@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.ecommerce.microcommerce.web.dao.ProductDao;
-import com.ecommerce.microcommerce.web.exceptions.ProduitIntrouvableException;
-import com.ecommerce.microcommerce.web.model.Product;
+import com.ecommerce.micrommerce.web.dao.ProductDao;
+import com.ecommerce.micrommerce.web.exceptions.ProduitGratuitException;
+import com.ecommerce.micrommerce.web.exceptions.ProduitIntrouvableException;
+import com.ecommerce.micrommerce.web.model.Product;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -54,6 +56,7 @@ public class ProductController {
     public Product afficherUnProduit(@PathVariable int id) {
         Product produit = productDao.findById(id);
         if(produit==null) throw new ProduitIntrouvableException("Le produit avec l'id " + id + " est INTROUVABLE. Écran Bleu si je pouvais.");
+//        if (produit.getPrix() == 0) throw new ProduitGratuitException("Le produit avec l'id " + id + " est GRATUIT.");
         return produit;
     }
 
@@ -72,4 +75,21 @@ public class ProductController {
                 .toUri();
         return ResponseEntity.created(location).build();
     }
+    
+    @ApiOperation(value = "Calcule la marge de chaque produit (différence entre prix d‘achat et prix de vente)!")
+    @GetMapping(value = "/AdminProduits/{id}")
+    public String calculerMargeProduit(@PathVariable int id) {
+    	Product produit = productDao.findById(id);
+    	if(produit==null) throw new ProduitIntrouvableException("Le produit avec l'id " + id + " est INTROUVABLE. Écran Bleu si je pouvais.");
+    	int margeProduit = produit.getPrix() - produit.getPrixAchat();
+    	return produit.toString() + ": " + margeProduit;
+    }
+    
+    @ApiOperation(value = "Retourne la liste de tous les produits triés par nom croissant")
+    @GetMapping(value = "/Produits/sort")
+    public List<Product> trierProduitsParOrdreAlphabetique() {
+    	Sort sortBy = Sort.by(new Sort.Order(Sort.Direction.ASC, "nom").ignoreCase());
+    	return productDao.findAll(sortBy);
+    }
+    
 }
