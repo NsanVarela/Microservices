@@ -1,7 +1,7 @@
 {
-	"id": "4d4e32b1-3279-4313-85d7-71cf7d1ab44c",
+	"id": "e2e99460-abb0-4971-a3cc-e9ac5c4ee511",
 	"name": "Micrommerce",
-	"timestamp": "2024-05-16T09:00:37.208Z",
+	"timestamp": "2024-05-16T09:30:51.353Z",
 	"collection_id": "0-ca06b042-5ce0-497c-9135-f6915cc8c98e",
 	"folder_id": 0,
 	"environment_id": "0",
@@ -12,7 +12,7 @@
 			"id": "38292650-6fab-474e-b3db-c865eca99d6c",
 			"name": "margeProduit",
 			"url": "http://localhost:9090/AdminProduits/4",
-			"time": 12,
+			"time": 204,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -20,7 +20,7 @@
 			"tests": {},
 			"testPassFailCounts": {},
 			"times": [
-				12
+				204
 			],
 			"allTests": [
 				{}
@@ -30,7 +30,7 @@
 			"id": "8cd7d8ff-da02-4481-99b4-cb9a6de609d2",
 			"name": "listeProduits",
 			"url": "http://localhost:9090/Produits",
-			"time": 7,
+			"time": 167,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -38,7 +38,7 @@
 			"tests": {},
 			"testPassFailCounts": {},
 			"times": [
-				7
+				167
 			],
 			"allTests": [
 				{}
@@ -48,7 +48,7 @@
 			"id": "153203d0-952f-4c59-881e-b5970be71fe3",
 			"name": "ajouterProduit",
 			"url": "http://localhost:9090/Produits",
-			"time": 7,
+			"time": 136,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -56,7 +56,7 @@
 			"tests": {},
 			"testPassFailCounts": {},
 			"times": [
-				7
+				136
 			],
 			"allTests": [
 				{}
@@ -84,7 +84,7 @@
 			"id": "9f885db6-54a8-44a2-a404-9c398f6627de",
 			"name": "getProduit",
 			"url": "http://localhost:9090/Produits/4",
-			"time": 7,
+			"time": 10,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -92,7 +92,7 @@
 			"tests": {},
 			"testPassFailCounts": {},
 			"times": [
-				7
+				10
 			],
 			"allTests": [
 				{}
@@ -102,6 +102,24 @@
 			"id": "665624ff-d1bb-4263-b9f0-e3fc07d14502",
 			"name": "supprimerProduit",
 			"url": "http://localhost:9090/Produits/2",
+			"time": 17,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				17
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "6aed78c9-bb55-4bb2-bdf1-8d4d37b9da12",
+			"name": "trierProduits",
+			"url": "http://localhost:9090/Produits/sort",
 			"time": 19,
 			"responseCode": {
 				"code": 200,
@@ -117,28 +135,10 @@
 			]
 		},
 		{
-			"id": "6aed78c9-bb55-4bb2-bdf1-8d4d37b9da12",
-			"name": "trierProduits",
-			"url": "http://localhost:9090/Produits/sort",
-			"time": 8,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {},
-			"testPassFailCounts": {},
-			"times": [
-				8
-			],
-			"allTests": [
-				{}
-			]
-		},
-		{
 			"id": "2a4302c5-3d3b-4fc7-ab76-aef789d71037",
 			"name": "testeDeRequetes",
 			"url": "http://localhost:9090/test/produits/400",
-			"time": 7,
+			"time": 43,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -146,7 +146,7 @@
 			"tests": {},
 			"testPassFailCounts": {},
 			"times": [
-				7
+				43
 			],
 			"allTests": [
 				{}
@@ -154,7 +154,7 @@
 		}
 	],
 	"count": 1,
-	"totalTime": 75,
+	"totalTime": 604,
 	"collection": {
 		"requests": [
 			{

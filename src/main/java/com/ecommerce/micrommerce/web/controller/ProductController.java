@@ -56,7 +56,6 @@ public class ProductController {
     public Product afficherUnProduit(@PathVariable int id) {
         Product produit = productDao.findById(id);
         if(produit==null) throw new ProduitIntrouvableException("Le produit avec l'id " + id + " est INTROUVABLE. Écran Bleu si je pouvais.");
-//        if (produit.getPrix() == 0) throw new ProduitGratuitException("Le produit avec l'id " + id + " est GRATUIT.");
         return produit;
     }
 
@@ -67,6 +66,7 @@ public class ProductController {
 
     @PostMapping(value = "/Produits")
     public ResponseEntity<Product> ajouterProduit(@RequestBody @Valid Product product) {
+    	if(product.getPrixAchat() == 0) throw new ProduitGratuitException("Le produit avec l'id est GRATUIT ??? Rien n'est gratuit dans la vie");
         Product productAdded = productDao.save(product);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -88,8 +88,7 @@ public class ProductController {
     @ApiOperation(value = "Retourne la liste de tous les produits triés par nom croissant")
     @GetMapping(value = "/Produits/sort")
     public List<Product> trierProduitsParOrdreAlphabetique() {
-    	Sort sortBy = Sort.by(new Sort.Order(Sort.Direction.ASC, "nom").ignoreCase());
-    	return productDao.findAll(sortBy);
+    	return productDao.findAllByOrderByNom();
     }
     
 }
